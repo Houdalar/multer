@@ -1,7 +1,7 @@
 import express from "express";
 import { body } from "express-validator";
-import {login , register , updateuserprofile} from "../controller/User.js";
-import { getGames ,getGame ,addGame , buyGame} from "../controller/Games.js";
+import {login , register , updateuserprofile} from "../Controller/User.js";
+import { getGames ,getGame ,addGame , buyGame} from "../Controller/Games.js";
 
 const router = express.Router();
 import multerConfig from "../midllewares/multer.js";
