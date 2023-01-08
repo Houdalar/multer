@@ -1,30 +1,31 @@
-version : '3.9'
-
+version : "3"
 services :
-  mongo_db :
-    container_name : mongo_db
-    image : mongo:latest
-    restart : always
-    volumes :
-    - mongo_db:/data/db
-   
-
-
   api :
-  build : .
-  ports :
-  - "27050:27050"
-  environment :
-  - MONGO_URL: mongodb://mongo_db:27017
-  - MONGO_DB : exercice
-  depends_on :
-  - mongo_db
-  
+    image : exercice
+    build : .
+    environment :
+      - NODE_ENV=production
+      - DB_URL=mongodb://mongo
+    ports :
+      - "9090:9090"
+    networks :
+      - app7
+    depends_on :
+      - mongo
+  mongo :
+    image : mongo:5
+    networks :
+      - app7
+    ports :
+      - "27017:27017"
+    volumes :
+      - database:/data/db
+volumes:
+  database:
+networks:
+  app7:
 
-volumes :
-  mongo_db : {}
-
-  
-  
-
+ #docker-compose up -d    : pour lancer le docker-compose
+  #docker-compose down     : pour arrêter le docker-compose
+  # badalt 7aja f server.js : DB_UR
 

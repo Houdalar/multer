@@ -11,12 +11,13 @@ app.use(express.json());
 
 const port = process.env.PORT || 9090;
 const databaseName = 'exerice';
+const db_url = process.env.DB_URL || 'mongodb://localhost:27017';
 
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect(`mongodb://localhost:27017/${databaseName}`)
+  .connect(`${db_url}/${databaseName}`)
   .then(() => {
     console.log(`Connected to ${databaseName}`);
   })
